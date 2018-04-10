@@ -132,10 +132,9 @@ int main ()
     std::unordered_map<string, std::vector<ProcessInfo>> processMap; // map to store all samples, keyed by process
     std::string line; // input line
     std::string infoLine("SAMPLE TIME:"); // info lines start like that
-    std::string sysInfo, realInfoLineStart, realInfoLineEnd; // store start & end timestamps
+    std::string realInfoLineStart, realInfoLineEnd; // store start & end timestamps
 
     //read entire process list and build table
-    std::getline(std::cin, sysInfo); // get sys info
     std::getline(std::cin, realInfoLineStart); // get first timestamp
     while (std::getline(std::cin, line)) // while the input has lines
     {
@@ -168,19 +167,6 @@ int main ()
     unsigned long diffMinorFaults = 0;
     unsigned long diffReadBytes = 0;
     unsigned long diffWriteBytes = 0;
-
-    // print map contents
-    /*for ( auto it = processMap.begin(); it != processMap.end(); ++it )
-    {
-        std::cout << "Key: " << it->first << std::endl;
-        for (std::vector<ProcessInfo>::iterator it2 = it->second.begin() ; it2 != it->second.end(); ++it2)
-        {
-            (*it2).PrintInfo();
-        }
-        std::cout << endl << endl;
-    }
-    std::cout << endl << endl << endl;
-    */
 
     // echo first line of output, containing start & end timestamps of summary
     std::cout << "Interval: " + realInfoLineStart.substr(realInfoLineStart.find(":")+1) + ", "
